@@ -128,7 +128,7 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'mydata' => [
+        'mydatas' => [
             'provider' => 'mydata',
             'table' => 'mydatas_password_resets',
             'expire' => 60,
