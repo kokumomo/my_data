@@ -52,9 +52,9 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
-        'mydatas' => [
+        'avatars' => [
             'driver' => 'session',
-            'provider' => 'mydatas',
+            'provider' => 'avatars',
         ],
     ],
 
@@ -88,9 +88,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-        'mydatas' => [
+        'avatars' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mydata::class,
+            'model' => App\Models\Avatar::class,
         ],
     ],
 
@@ -118,7 +118,7 @@ return [
         ],
         'owners' => [
             'provider' => 'owners',
-            'table' => 'owners_password_resets',
+            'table' => 'owner_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
@@ -128,9 +128,9 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'mydatas' => [
-            'provider' => 'mydata',
-            'table' => 'mydatas_password_resets',
+        'avatars' => [
+            'provider' => 'avatars',
+            'table' => 'avatar_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

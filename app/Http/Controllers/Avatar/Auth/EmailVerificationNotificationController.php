@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mydata\Auth;
+namespace App\Http\Controllers\Avatar\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -17,7 +17,7 @@ class EmailVerificationNotificationController extends Controller
     public function store(Request $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(RouteServiceProvider::MYDATA_HOME);
+            return redirect()->intended(RouteServiceProvider::AVATAR_HOME);
         }
 
         $request->user()->sendEmailVerificationNotification();

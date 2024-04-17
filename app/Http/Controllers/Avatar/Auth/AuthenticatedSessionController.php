@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mydata\Auth;
+namespace App\Http\Controllers\Avatar\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('mydata.auth.login');
+        return view('avatar.auth.login');
     }
 
     /**
@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::MYDATA_HOME);
+        return redirect()->intended(RouteServiceProvider::AVATAR_HOME);
     }
 
     /**
@@ -43,12 +43,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        Auth::guard('mydata')->logout();
+        Auth::guard('avatars')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/mydata');
+        return redirect('/avatar');
     }
 }

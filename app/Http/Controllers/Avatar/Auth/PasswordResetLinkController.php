@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mydata\Auth;
+namespace App\Http\Controllers\Avatar\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class PasswordResetLinkController extends Controller
      */
     public function create()
     {
-        return view('mydata.auth.forgot-password');
+        return view('avatar.auth.forgot-password');
     }
 
     /**

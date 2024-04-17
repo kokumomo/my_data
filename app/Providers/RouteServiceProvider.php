@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
     public const OWNER_HOME = '/owner/dashboard';
     public const ADMIN_HOME = '/admin/dashboard';
-    public const MYDATA_HOME = '/mydata/dashboard';
+    public const AVATAR_HOME = '/avatar/dashboard';
     /**
      * The controller namespace for the application.
      *
@@ -57,17 +57,18 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/owner.php'));
 
+            Route::prefix('avatar')
+                ->as('avatar.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/avatar.php'));
+
             Route::prefix('/')
                 ->as('user.')
                 ->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            Route::prefix('mydata')
-                ->as('mydata.')
-                ->middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/mydata.php'));
         });
     }
 

@@ -26,8 +26,8 @@
             @include('layouts.owner-navigation')
         @elseif(auth('users')->user())
             @include('layouts.user-navigation')
-        @elseif(auth('mydata')->user())
-            @include('layouts.mydata-navigation')
+        @elseif(auth('avatars')->user())
+            @include('layouts.avatar-navigation')
         @endif
 
 

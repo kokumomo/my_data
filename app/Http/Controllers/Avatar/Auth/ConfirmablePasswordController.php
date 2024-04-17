@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mydata\Auth;
+namespace App\Http\Controllers\Avatar\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -17,7 +17,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show()
     {
-        return view('mydata.auth.confirm-password');
+        return view('avatar.auth.confirm-password');
     }
 
     /**
@@ -28,7 +28,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Auth::guard('mydatas')->validate([
+        if (! Auth::guard('avatars')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {
@@ -39,6 +39,6 @@ class ConfirmablePasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(RouteServiceProvider::MYDATA_HOME);
+        return redirect()->intended(RouteServiceProvider::AVATAR_HOME);
     }
 }

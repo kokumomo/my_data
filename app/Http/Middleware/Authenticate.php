@@ -11,7 +11,7 @@ class Authenticate extends Middleware
     protected $user_route = 'user.login';
     protected $owner_route = 'owner.login';
     protected $admin_route = 'admin.login';
-    protected $mydata_route = 'mydata.login';
+    protected $avatar_route = 'avatar.login';
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
@@ -25,8 +25,8 @@ class Authenticate extends Middleware
                 return route($this->owner_route);
             } elseif(Route::is('admin.*')){
                 return route($this->admin_route);
-            } elseif(Route::is('mydata.*')){
-                return route($this->mydata_route);
+            } elseif(Route::is('avatar.*')){
+                return route($this->avatar_route);
             } else {
                 return route($this->user_route);
             }

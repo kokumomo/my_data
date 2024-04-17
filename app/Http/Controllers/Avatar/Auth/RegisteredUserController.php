@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Mydata\Auth;
+namespace App\Http\Controllers\Avatar\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mydata;
+use App\Models\Avatar;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +19,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('mydata.auth.register');
+        return view('avatar.auth.register');
     }
 
     /**
@@ -35,11 +34,11 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:mydatas',
+            'email' => 'required|string|email|max:255|unique:avatars',
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        Auth::guard('mydatas')->login($user = Mydata::create([
+        Auth::guard('avatars')->login($user = Avatar::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -47,6 +46,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::MYDATA_HOME);
+        return redirect(RouteServiceProvider::AVATAR_HOME);
     }
 }

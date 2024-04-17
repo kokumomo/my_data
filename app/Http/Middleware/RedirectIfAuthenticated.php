@@ -12,7 +12,7 @@ class RedirectIfAuthenticated
     private const GUARD_USER = 'users';
     private const GUARD_OWNER = 'owners';
     private const GUARD_ADMIN = 'admin';
-    private const GUARD_MYDATA = 'mydatas';
+    private const GUARD_AVATAR = 'avatars';
     /**
      * Handle an incoming request.
      *
@@ -35,8 +35,8 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::ADMIN_HOME);
         }
 
-        if (Auth::guard(self::GUARD_MYDATA)->check() && $request->routeIs('mydata.*')) {
-            return redirect(RouteServiceProvider::MYDATA_HOME);
+        if (Auth::guard(self::GUARD_AVATAR)->check() && $request->routeIs('avatar.*')) {
+            return redirect(RouteServiceProvider::AVATAR_HOME);
         }
 
         return $next($request);
