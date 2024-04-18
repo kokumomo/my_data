@@ -28,6 +28,10 @@
             @include('layouts.user-navigation')
         @elseif(auth('avatars')->user())
             @include('layouts.avatar-navigation')
+        @elseif(auth('actors')->user())
+            @include('layouts.actor-navigation')
+        @elseif(auth('buyers')->user())
+            @include('layouts.buyer-navigation')
         @endif
 
 

@@ -12,7 +12,10 @@ class RedirectIfAuthenticated
     private const GUARD_USER = 'users';
     private const GUARD_OWNER = 'owners';
     private const GUARD_ADMIN = 'admin';
+
     private const GUARD_AVATAR = 'avatars';
+    private const GUARD_ACTOR = 'actors';
+    private const GUARD_BUYER = 'buyers';
     /**
      * Handle an incoming request.
      *
@@ -35,8 +38,17 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::ADMIN_HOME);
         }
 
+
         if (Auth::guard(self::GUARD_AVATAR)->check() && $request->routeIs('avatar.*')) {
             return redirect(RouteServiceProvider::AVATAR_HOME);
+        }
+
+        if (Auth::guard(self::GUARD_ACTOR)->check() && $request->routeIs('actor.*')) {
+            return redirect(RouteServiceProvider::ACTOR_HOME);
+        }
+
+        if (Auth::guard(self::GUARD_BUYER)->check() && $request->routeIs('buyer.*')) {
+            return redirect(RouteServiceProvider::BUYER_HOME);
         }
 
         return $next($request);

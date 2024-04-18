@@ -51,6 +51,10 @@ class LoginRequest extends FormRequest
             $guard = 'admin';
         } elseif($this->routeIs('avatar.*')){
             $guard = 'avatars';
+        } elseif($this->routeIs('actor.*')){
+            $guard = 'actors';
+        } elseif($this->routeIs('buyer.*')){
+            $guard = 'buyers';
         } else {
             $guard = 'users';
         }

@@ -52,9 +52,19 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
+
+
         'avatars' => [
             'driver' => 'session',
             'provider' => 'avatars',
+        ],
+        'actors' => [
+            'driver' => 'session',
+            'provider' => 'actors',
+        ],
+        'buyers' => [
+            'driver' => 'session',
+            'provider' => 'buyers',
         ],
     ],
 
@@ -88,9 +98,19 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
+
+
         'avatars' => [
             'driver' => 'eloquent',
             'model' => App\Models\Avatar::class,
+        ],
+        'actors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Actor::class,
+        ],
+        'buyers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Buyer::class,
         ],
     ],
 
@@ -128,9 +148,23 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+
         'avatars' => [
             'provider' => 'avatars',
             'table' => 'avatar_password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'actors' => [
+            'provider' => 'actors',
+            'table' => 'actor_password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'buyers' => [
+            'provider' => 'buyers',
+            'table' => 'buyer_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

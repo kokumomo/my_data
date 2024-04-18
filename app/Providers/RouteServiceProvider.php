@@ -20,7 +20,10 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
     public const OWNER_HOME = '/owner/dashboard';
     public const ADMIN_HOME = '/admin/dashboard';
+    
     public const AVATAR_HOME = '/avatar/dashboard';
+    public const ACTOR_HOME = '/actor/dashboard';
+    public const BUYER_HOME = '/buyer/dashboard';
     /**
      * The controller namespace for the application.
      *
@@ -56,21 +59,34 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/owner.php'));
-
-            Route::prefix('avatar')
-                ->as('avatar.')
-                ->middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/avatar.php'));
-
-            Route::prefix('/')
+                
+                Route::prefix('/')
                 ->as('user.')
                 ->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+                
 
-        });
-    }
+
+                Route::prefix('avatar')
+                    ->as('avatar.')
+                    ->middleware('web')
+                    ->namespace($this->namespace)
+                    ->group(base_path('routes/avatar.php'));
+
+                Route::prefix('actor')
+                    ->as('actor.')
+                    ->middleware('web')
+                    ->namespace($this->namespace)
+                    ->group(base_path('routes/actor.php'));
+
+                Route::prefix('buyer')
+                    ->as('buyer.')
+                    ->middleware('web')
+                    ->namespace($this->namespace)
+                    ->group(base_path('routes/buyer.php'));
+            });
+        }
 
     /**
      * Configure the rate limiters for the application.
