@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Avatar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Owner; // Eloquent エロクアント
+use App\Models\Actor; // Eloquent エロクアント
 use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
 use Carbon\Carbon;
 
-class OwnersController extends Controller
+class ActorsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:avatars');
     }
 
     public function index()
     {
-        $owners = Owner::select('id', 'name', 'email', 'created_at')
+        $actors = Actor::select('id', 'name', 'email', 'created_at')
         ->paginate(3);
 
-        return view('admin.owners.index', 
-        compact('owners'));
+        return view('avatar.actors.index', 
+        compact('actors'));
     }
 
     /**
@@ -31,7 +31,7 @@ class OwnersController extends Controller
      */
     public function create()
     {
-        return view('admin.owners.create');
+        return view('avatar.actors.create');
     }
 
     /**

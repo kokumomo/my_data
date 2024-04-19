@@ -8,6 +8,7 @@ use App\Http\Controllers\Avatar\Auth\NewPasswordController;
 use App\Http\Controllers\Avatar\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Avatar\Auth\RegisteredUserController;
 use App\Http\Controllers\Avatar\Auth\VerifyEmailController;
+use App\Http\Controllers\Avatar\ActorsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('avatar.welcome');
 });
+
+Route::resource('actors', ActorsController::class)->middleware('auth:avatars');
 
 Route::get('/dashboard', function () {
     return view('avatar.dashboard');

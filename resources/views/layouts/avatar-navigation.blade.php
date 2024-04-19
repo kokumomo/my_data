@@ -5,15 +5,20 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('avatar.dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
+                    <div class="w-12">
+                        <a href="{{ route('avatar.dashboard') }}">
+                            <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('avatar.dashboard')" :active="request()->routeIs('avatar.dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('avatar.actors.index')" :active="request()->routeIs('avatar.actors.index')">
+                        actor list
                     </x-nav-link>
                 </div>
             </div>
@@ -38,8 +43,7 @@
                         <form method="POST" action="{{ route('avatar.logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('avatar.logout')"
-                                    onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('avatar.logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -80,8 +84,7 @@
                 <form method="POST" action="{{ route('avatar.logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('avatar.logout')"
-                            onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('avatar.logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
