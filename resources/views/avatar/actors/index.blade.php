@@ -12,7 +12,7 @@
                 
                 <section class="text-gray-600 body-font">
                   <div class="container md:px-5 mx-auto">
-                    {{-- <x-flash-message status="session('status')" /> --}}
+                  <x-flash-message status="info" />
                     <div class="flex justify-end mb-4"> 
                       <button onclick="location.href='{{ route('avatar.actors.create')}}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">新規登録する</button>                        
                     </div>
@@ -24,23 +24,17 @@
                             <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                             <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">作成日</th>
                             <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
-                            <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th></thead>
-                        <tbody>
+                          </tr>
+                        </thead>
+                          <tbody>
                           @foreach ($actors as $actor)
                           <tr>
                             <td class="md:px-4 py-3">{{ $actor->name }}</td>
                             <td class="md:px-4 py-3">{{ $actor->email }}</td>
                             <td class="md:px-4 py-3">{{ $actor->created_at->diffForHumans() }}</td>
-                            <td class="md:px-4 py-3">
+                            <td class="px-4 py-3">
                               <button onclick="location.href='{{ route('avatar.actors.edit', ['actor' => $actor->id ])}}'" class="text-white bg-indigo-400 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-500 rounded ">編集</button>                        
                             </td>
-                            <form id="delete_{{$actor->id}}" method="post" action="{{ route('avatar.actors.destroy', ['actor' => $actor->id ] )}}">
-                              @csrf
-                              @method('delete')
-                              <td class="md:px-4 py-3">
-                                <a href="#" data-id="{{ $actor->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded ">削除</a>                        
-                              </td>
-                            </form>
                           </tr>
                           @endforeach
                         </tbody>
@@ -65,12 +59,4 @@
           </div>
       </div>
   </div>
-<script>
-  function deletePost(e) {
-      'use strict';
-      if (confirm('本当に削除してもいいですか?')) {
-      document.getElementById('delete_' + e.dataset.id).submit();
-      }
-  }
-  </script>
 </x-app-layout>

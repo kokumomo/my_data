@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Actor; // Eloquent エロクアント
 use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class ActorsController extends Controller
 {
@@ -42,7 +43,22 @@ class ActorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$request->name;
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:actors',
+            'password' => 'required|string|confirmed|min:8',
+        ]);
+
+        Actor::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()
+        ->route('avatar.actors.index')
+        ->with('message', 'オーナー登録を実施しました。');
     }
 
     /**
@@ -64,7 +80,9 @@ class ActorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $actor = Actor::findOrFail($id);
+        // dd($actor);
+        return view('avatar.actors.edit', compact('actor'));
     }
 
     /**
@@ -76,7 +94,16 @@ class ActorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $actor = Actor::findOrFail($id);
+        $actor->name = $request->name;
+        $actor->email = $request->email;
+        $actor->password = Hash::make($request->password);
+        $actor->save();
+
+        return redirect()
+        ->route('avatar.actors.index')
+        ->with(['message' => 'オーナー情報を更新しました。',
+        'status' => 'info']);
     }
 
     /**

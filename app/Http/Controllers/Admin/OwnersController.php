@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\Owner; // Eloquent エロクアント
 use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class OwnersController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
-    }
+    } 
 
     public function index()
     {
-        $owners = Owner::select('id', 'name', 'email', 'created_at')
-        ->paginate(3);
+        $owners = Owner::select('id', 'name', 'email', 'created_at')->get();
 
         return view('admin.owners.index', 
         compact('owners'));
@@ -42,7 +42,22 @@ class OwnersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$request->name;
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:owners',
+            'password' => 'required|string|confirmed|min:8',
+        ]);
+
+        Owner::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()
+        ->route('admin.owners.index')
+        ->with('message', 'オーナー登録を実施しました。');
     }
 
     /**
@@ -64,7 +79,9 @@ class OwnersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+        // dd($owner);
+        return view('admin.owners.edit', compact('owner'));
     }
 
     /**
@@ -76,7 +93,16 @@ class OwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+        $owner->name = $request->name;
+        $owner->email = $request->email;
+        $owner->password = Hash::make($request->password);
+        $owner->save();
+
+        return redirect()
+        ->route('admin.owners.index')
+        ->with(['message' => 'オーナー情報を更新しました。',
+        'status' => 'info']);
     }
 
     /**
