@@ -18,7 +18,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('avatar.actors.index')" :active="request()->routeIs('avatar.actors.index')">
-                        actor list
+                        actor管理
+                    </x-nav-link>
+                    <x-nav-link :href="route('avatar.expired-actors.index')" :active="request()->routeIs('avatar.expired-actors.index')">
+                        期限切れactor一覧
                     </x-nav-link>
                 </div>
             </div>

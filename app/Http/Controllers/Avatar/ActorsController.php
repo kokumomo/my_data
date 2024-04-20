@@ -58,7 +58,8 @@ class ActorsController extends Controller
 
         return redirect()
         ->route('avatar.actors.index')
-        ->with('message', 'オーナー登録を実施しました。');
+        ->with(['message' => 'オーナー登録を実施しました。',
+        'status' => 'info']);
     }
 
     /**
@@ -114,6 +115,21 @@ class ActorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Actor::findOrFail($id)->delete(); //ソフトデリート
+
+        return redirect()
+        ->route('avatar.actors.index')
+        ->with(['message' => 'オーナー情報を削除しました。',
+        'status' => 'alert']);
+    }
+
+    public function expiredActorIndex(){
+        $expiredActors = Actor::onlyTrashed()->get();
+        return view('avatar.expired-actors', compact('expiredActors'));
+    }
+    
+    public function expiredActorDestroy($id){
+        Actor::onlyTrashed()->findOrFail($id)->forceDelete();
+        return redirect()->route('avatar.expired-actors.index'); 
     }
 }

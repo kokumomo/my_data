@@ -28,6 +28,12 @@ Route::get('/', function () {
 
 Route::resource('actors', ActorsController::class)->middleware('auth:avatars');
 
+Route::prefix('expired-actors')->
+    middleware('auth:avatars')->group(function(){
+        Route::get('index', [ActorsController::class, 'expiredActorIndex'])->name('expired-actors.index');
+        Route::post('destroy/{actor}', [ActorsController::class, 'expiredActorDestroy'])->name('expired-actors.destroy');
+});
+
 Route::get('/dashboard', function () {
     return view('avatar.dashboard');
 })->middleware(['auth:avatars'])->name('dashboard');
