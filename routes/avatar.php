@@ -11,22 +11,12 @@ use App\Http\Controllers\Avatar\Auth\VerifyEmailController;
 use App\Http\Controllers\Avatar\ActorsController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('avatar.welcome');
-});
+// Route::get('/', function () {
+//     return view('avatar.welcome');
+// });
 
-Route::resource('actors', ActorsController::class)->middleware('auth:avatars');
+Route::resource('actors', ActorsController::class)->middleware('auth:avatars')->except(['show']);
 
 Route::prefix('expired-actors')->
     middleware('auth:avatars')->group(function(){

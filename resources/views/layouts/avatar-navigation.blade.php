@@ -73,6 +73,12 @@
             <x-responsive-nav-link :href="route('avatar.dashboard')" :active="request()->routeIs('avatar.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('avatar.actors.index')" :active="request()->routeIs('avatar.actors.index')">
+                オーナー管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('avatar.expired-actors.index')" :active="request()->routeIs('avatar.expired-actors.index')">
+                期限切れオーナー一覧
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
