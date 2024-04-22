@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Avatar;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Actor; // Eloquent エロクアント
+use App\Models\Coffee;
 use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Throwable;
+use Illuminate\Support\Facades\Log;
 
 class ActorsController extends Controller
 {
@@ -50,14 +53,29 @@ class ActorsController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        Actor::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        try{
+            DB::transaction(function () use($request) {
+                $actor = Actor::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                Coffee::create([
+                    'actor_id' => $actor->id,
+                    'name' => '国名を入力してください',
+                    'information' => '',
+                    'filename' => '',
+                    'is_selling' => true
+                ]);
+            }, 2);
+        }catch(Throwable $e){
+            Log::error($e);
+            throw $e;
+        }
 
         return redirect()
-        ->route('avatar.actors.index')
+        ->route('admin.owners.index')
         ->with(['message' => 'オーナー登録を実施しました。',
         'status' => 'info']);
     }
