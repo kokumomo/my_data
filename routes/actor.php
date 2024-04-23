@@ -8,21 +8,18 @@ use App\Http\Controllers\Actor\Auth\NewPasswordController;
 use App\Http\Controllers\Actor\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Actor\Auth\RegisteredUserController;
 use App\Http\Controllers\Actor\Auth\VerifyEmailController;
+use App\Http\Controllers\Actor\CoffeeController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('actor.welcome');
+});
+
+Route::prefix('coffees')->
+    middleware('auth:actors')->group(function(){
+        Route::get('index', [CoffeeController::class, 'index'])->name('coffees.index');
+        Route::get('edit/{coffee}', [CoffeeController::class, 'edit'])->name('coffees.edit');
+        Route::post('update/{coffee}', [CoffeeController::class, 'update'])->name('coffees.update');
 });
 
 Route::get('/dashboard', function () {
