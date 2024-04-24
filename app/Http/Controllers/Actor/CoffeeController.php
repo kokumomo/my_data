@@ -50,11 +50,30 @@ class CoffeeController extends Controller
 
     public function update(UploadImageRequest $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'information' => 'required|string|max:1000',
+            'is_selling' => 'required',
+        ]);
+
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
             $fileNameToStore = ImageService::upload($imageFile, 'shops'); 
         }
 
-        return redirect()->route('actor.coffees.index');
+        $coffee = Coffee::findOrFail($id);
+        $coffee->name = $request->name;
+        $coffee->information = $request->information;
+        $coffee->is_selling = $request->is_selling;
+        if(!is_null($imageFile) && $imageFile->isValid()){
+            $coffee->filename = $fileNameToStore;
+        }
+
+        $coffee->save();
+
+        return redirect()
+        ->route('actor.coffees.index')
+        ->with(['message' => 'コーヒー情報を更新しました。',
+        'status' => 'info']);
     }
 }
