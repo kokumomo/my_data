@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coffee;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 class CoffeeController extends Controller
 {
@@ -40,11 +42,27 @@ class CoffeeController extends Controller
 
     public function edit($id)
     {
-        dd(Coffee::findOrFail($id));
+        $coffee = Coffee::findOrFail($id);
+        return view('actor.coffees.edit', compact('coffee'));
     }
 
     public function update(Request $request, $id)
     {
+        $imageFile = $request->image;
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            // Storage::putFile('public/shops', $imageFile);
+            $fileName = uniqid(rand() . '_');
+            $extension = $imageFile->extension();
+            $fileNameToStore = $fileName . '.' . $extension;
+            $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+            // dd($imageFile, $resizedImage);
+            
+            // $fileNameToStore = ImageService::upload($imageFile, 'shops');
+            // Storage::put('public/' . $folderName . '/' . $fileNameToStore, $resizedImage);
+            Storage::put('public/shops/' . $fileNameToStore, $resizedImage);
 
+        }
+
+        return redirect()->route('actor.coffees.index');
     }
 }
