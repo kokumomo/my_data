@@ -8,6 +8,7 @@ use App\Models\Coffee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
+use App\Http\Requests\UploadImageRequest;
 
 class CoffeeController extends Controller
 {
@@ -46,7 +47,7 @@ class CoffeeController extends Controller
         return view('actor.coffees.edit', compact('coffee'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
