@@ -40,22 +40,11 @@ class SnapController extends Controller
         compact('snaps'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('actor.snaps.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(UploadImageRequest $request)
     {
         $imageFiles = $request->file('files');
@@ -75,48 +64,42 @@ class SnapController extends Controller
         'status' => 'info']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $snap = Snap::findOrFail($id);
+        return view('actor.snaps.edit', compact('snap'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'string|max:50'
+        ]);
+
+        $snap = Snap::findOrFail($id);
+        $snap->title = $request->title;
+        $snap->save();
+
+        return redirect()
+        ->route('actor.snaps.index')
+        ->with(['message' => '画像情報を更新しました。',
+        'status' => 'info']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $snap = Snap::findOrFail($id);
+        $filePath = 'public/products/' . $snap->filename;
+
+        if(Storage::exists($filePath)){
+            Storage::delete($filePath);
+        }
+
+        Snap::findOrFail($id)->delete(); 
+
+        return redirect()
+        ->route('actor.snaps.index')
+        ->with(['message' => '画像を削除しました。',
+        'status' => 'alert']);
     }
 }
