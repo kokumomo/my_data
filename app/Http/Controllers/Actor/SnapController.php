@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Snap;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UploadImageRequest;
+use App\Services\ImageService;
+use Illuminate\Support\Facades\Storage;
 
 class SnapController extends Controller
 {
@@ -56,7 +58,21 @@ class SnapController extends Controller
      */
     public function store(UploadImageRequest $request)
     {
-        dd($request);
+        $imageFiles = $request->file('files');
+        if(!is_null($imageFiles)){
+            foreach($imageFiles as $imageFile){
+                $fileNameToStore = ImageService::upload($imageFile, 'products');    
+                Snap::create([
+                    'actor_id' => Auth::id(),
+                    'filename' => $fileNameToStore  
+                ]);
+            }
+        }
+
+        return redirect()
+        ->route('actor.snaps.index')
+        ->with(['message' => '画像登録を実施しました。',
+        'status' => 'info']);
     }
 
     /**
