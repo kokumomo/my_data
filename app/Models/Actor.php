@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Coffee;
+use App\Models\Snap;
 
 class Actor extends Authenticatable
 {
@@ -31,5 +32,10 @@ class Actor extends Authenticatable
     public function coffee()
     {
         return $this->hasOne(Coffee::class);
+    }
+
+    public function snap()
+    {
+        return $this->hasMany(Snap::class);
     }
 }

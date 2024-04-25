@@ -20,6 +20,9 @@
                     <x-nav-link :href="route('actor.coffees.index')" :active="request()->routeIs('actor.coffees.index')">
                         coffee情報
                     </x-nav-link>
+                    <x-nav-link :href="route('actor.snaps.index')" :active="request()->routeIs('actor.snaps.index')">
+                        画像管理
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -73,6 +76,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('actor.coffees.index')" :active="request()->routeIs('actor.coffees.index')">
                 店舗情報
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('actor.snaps.index')" :active="request()->routeIs('actor.snaps.index')">
+                画像管理
             </x-responsive-nav-link>
         </div>
 

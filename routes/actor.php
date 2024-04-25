@@ -9,6 +9,7 @@ use App\Http\Controllers\Actor\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Actor\Auth\RegisteredUserController;
 use App\Http\Controllers\Actor\Auth\VerifyEmailController;
 use App\Http\Controllers\Actor\CoffeeController;
+use App\Http\Controllers\Actor\SnapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +22,9 @@ Route::prefix('coffees')->
         Route::get('edit/{coffee}', [CoffeeController::class, 'edit'])->name('coffees.edit');
         Route::post('update/{coffee}', [CoffeeController::class, 'update'])->name('coffees.update');
 });
+
+Route::resource('snaps', SnapController::class)
+->middleware('auth:actors')->except(['show']);
 
 Route::get('/dashboard', function () {
     return view('actor.dashboard');

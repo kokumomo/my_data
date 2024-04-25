@@ -58,7 +58,7 @@ class CoffeeController extends Controller
 
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
-            $fileNameToStore = ImageService::upload($imageFile, 'shops'); 
+            $fileNameToStore = ImageService::upload($imageFile, 'coffees'); 
         }
 
         $coffee = Coffee::findOrFail($id);
