@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             AvatarSeeder::class,
             ActorSeeder::class,
             CoffeeSeeder::class,
+            ImageSeeder::class,
+            SnapSeeder::class,
         ]);
 
     }
