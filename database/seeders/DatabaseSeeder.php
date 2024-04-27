@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             CoffeeSeeder::class,
             ImageSeeder::class,
             SnapSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
         ]);
 
     }

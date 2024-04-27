@@ -10,6 +10,7 @@ use App\Http\Controllers\Actor\Auth\RegisteredUserController;
 use App\Http\Controllers\Actor\Auth\VerifyEmailController;
 use App\Http\Controllers\Actor\CoffeeController;
 use App\Http\Controllers\Actor\SnapController;
+use App\Http\Controllers\Actor\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,9 @@ Route::prefix('coffees')->
 });
 
 Route::resource('snaps', SnapController::class)
+->middleware('auth:actors')->except(['show']);
+
+Route::resource('products', ProductController::class)
 ->middleware('auth:actors')->except(['show']);
 
 Route::get('/dashboard', function () {
