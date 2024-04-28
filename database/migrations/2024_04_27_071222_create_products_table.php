@@ -19,6 +19,10 @@ class CreateProductsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->foreignId('coffee_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->foreignId('secondary_category_id')
             ->constrained();
             $table->foreignId('image1')
