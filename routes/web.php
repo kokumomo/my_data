@@ -23,8 +23,4 @@ Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
-
-Route::get('/sale1', [SaleController::class, 'showSale1']);
-Route::get('/sale2', [SaleController::class, 'showSale2']);
-
 require __DIR__.'/auth.php';
