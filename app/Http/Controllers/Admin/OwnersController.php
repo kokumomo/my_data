@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Owner; // Eloquent エロクアント
+use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ
+use Carbon\Carbon;
 
 class OwnersController extends Controller
 {
@@ -14,17 +17,16 @@ class OwnersController extends Controller
 
     public function index()
     {
-        dd('チェック');
+       
+        $owners = Owner::select('name', 'email', 'created_at')->get();
+
+        return view('admin.owners.index', 
+        compact('owners'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.owners.create');
     }
 
     /**
