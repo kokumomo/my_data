@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMydatasTable extends Migration
+class CreateShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateMydatasTable extends Migration
      */
     public function up()
     {
-        Schema::create('mydatas', function (Blueprint $table) {
+        Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('owner_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->text('information');
+            $table->string('filename');
+            $table->boolean('is_selling');
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ class CreateMydatasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mydatas');
+        Schema::dropIfExists('shops');
     }
 }

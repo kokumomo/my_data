@@ -17,37 +17,37 @@ class OwnerSeeder extends Seeder
     {
         DB::table('owners')->insert([
             [
-                'name' => 'test',
+                'name' => '東京',
                 'email' => 'test@test.com',
                 'password' => Hash::make('Password123'),
                 'created_at' => '2021/01/01 11:11:11'    
             ],
             [
-                'name' => 'test2',
+                'name' => '大阪',
                 'email' => 'test2@test.com',
                 'password' => Hash::make('password123'),
                 'created_at' => '2021/01/01 11:11:11'    
             ],
             [
-                'name' => 'test3',
+                'name' => '福岡',
                 'email' => 'test3@test.com',
                 'password' => Hash::make('password123'),
                 'created_at' => '2021/01/01 11:11:11'    
             ],
             [
-                'name' => 'test4',
+                'name' => '札幌',
                 'email' => 'test4@test.com',
                 'password' => Hash::make('password123'),
                 'created_at' => '2021/01/01 11:11:11'    
             ],
             [
-                'name' => 'test5',
+                'name' => '名古屋',
                 'email' => 'test5@test.com',
                 'password' => Hash::make('password123'),
                 'created_at' => '2021/01/01 11:11:11'    
             ],
             [
-                'name' => 'test6',
+                'name' => '仙台',
                 'email' => 'test6@test.com',
                 'password' => Hash::make('password123'),
                 'created_at' => '2021/01/01 11:11:11'    
