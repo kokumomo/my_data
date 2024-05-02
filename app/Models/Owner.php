@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shop;
-use App\Models\Topic;
+use App\Models\Image;
+use App\Models\Sale;
 
 class Owner extends Authenticatable
 {
@@ -34,8 +35,13 @@ class Owner extends Authenticatable
         return $this->hasOne(Shop::class);
     }
 
-    public function topic()
+    public function image()
     {
-        return $this->hasOne(Topic::class);
+        return $this->hasMany(Shop::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
     }
 }
