@@ -60,6 +60,8 @@ class ImageController extends Controller
      */
     public function store(UploadImageRequest $request)
     {
+        dd($request);
+        
         $imageFiles = $request->file('files');
         if(!is_null($imageFiles)){
             foreach($imageFiles as $imageFile){
