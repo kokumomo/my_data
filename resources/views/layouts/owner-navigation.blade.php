@@ -6,10 +6,10 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <div class="w-12">
-                    <a href="{{ route('owner.dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
+                        <a href="{{ route('owner.dashboard') }}">
+                            <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Navigation Links -->
@@ -22,6 +22,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
                         画像管理
+                    </x-nav-link>
+                    <x-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
+                        商品管理
                     </x-nav-link>
                     <x-nav-link :href="route('owner.sales.index')" :active="request()->routeIs('owner.sales.index')">
                         売上
@@ -49,8 +52,7 @@
                         <form method="POST" action="{{ route('owner.logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('owner.logout')"
-                                    onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('owner.logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log out') }}
                             </x-dropdown-link>
@@ -83,6 +85,9 @@
             <x-responsive-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
                 画像管理
             </x-responsive-nav-link>
+            <x-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
+                商品管理
+            </x-nav-link>
             <x-responsive-nav-link :href="route('owner.sales.index')" :active="request()->routeIs('owner.sales.index')">
                 売上
             </x-responsive-nav-link>
@@ -108,8 +113,7 @@
                 <form method="POST" action="{{ route('owner.logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('owner.logout')"
-                            onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('owner.logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log out') }}
                     </x-responsive-nav-link>
