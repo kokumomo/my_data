@@ -19,9 +19,15 @@ class CreateSalesTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->string('filename');
-            $table->string('title')->nullable();
-            $table->timestamps();
+            $table->string('date');
+            $table->integer('today_sale')->nullable();
+            $table->integer('today_sale2')->nullable();
+            $table->integer('total_sales')->nullable();
+            $table->integer('total_sales2')->nullable();
+            $table->float('rate')->nullable();
+            $table->float('plan_rate')->nullable();
+            $table->float('plan_rate2')->nullable();
+            $table->integer('last_rate')->nullable();
         });
     }
 
