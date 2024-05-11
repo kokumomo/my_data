@@ -16,48 +16,58 @@ class CategorySeeder extends Seeder
     {
         DB::table('primary_categories')->insert([
             [
-                'name' => 'キッズファッション',
+                'name' => '浅炒り',
                 'sort_order' => 1,
             ],
             [
-                'name' => '出産祝い・ギフト',
+                'name' => '中炒り',
                 'sort_order' => 2,
             ],
             [
-                'name' => 'ベビーカー',
+                'name' => '深炒り',
                 'sort_order' => 3,
             ],
             ]);
 
         DB::table('secondary_categories')->insert([
             [
-                'name' => '靴',
+                'name' => 'ライトロースト',
                 'sort_order' => 1,
                 'primary_category_id' => 1
             ],
             [
-                'name' => 'トップス',
+                'name' => 'シナモンロースト',
                 'sort_order' => 2,
                 'primary_category_id' => 1
             ],
             [
-                'name' => 'バッグ・ランドセル',
+                'name' => 'ミディアムロースト',
                 'sort_order' => 3,
                 'primary_category_id' => 1
             ],
             [
-                'name' => 'ギフトセット',
+                'name' => 'ハイロースト',
                 'sort_order' => 4,
-                'primary_category_id' => 2
+                'primary_category_id' => 1
             ],
             [
-                'name' => 'メモリアル・記念品',
+                'name' => 'シティロースト',
                 'sort_order' => 5,
                 'primary_category_id' => 2
             ],
             [
-                'name' => 'おむつケーキ',
+                'name' => 'フルシティロースト',
                 'sort_order' => 6,
+                'primary_category_id' => 2
+            ],
+            [
+                'name' => 'フレンチロースト',
+                'sort_order' => 7,
+                'primary_category_id' => 2
+            ],
+            [
+                'name' => 'イタリアンロースト',
+                'sort_order' => 8,
                 'primary_category_id' => 2
             ],
             ]);
