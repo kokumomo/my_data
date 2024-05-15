@@ -144,6 +144,10 @@
   .micromodal-slide .modal__overlay {
     will-change: transform;
   }
+.swiper-container {
+  /* width: 600px; */
+  height: 300px;
+}
 /*
 ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 */
