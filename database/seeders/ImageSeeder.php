@@ -92,17 +92,17 @@ class ImageSeeder extends Seeder
             ],
             [
                 'owner_id' => 6,
-                'filename' => 'kirimanjaro1.jpeg',
+                'filename' => 'kilimanjaro1.jpeg',
                 'title' => null
             ],
             [
                 'owner_id' => 6,
-                'filename' => 'kirimanjaro2.jpeg',
+                'filename' => 'kilimanjaro2.jpeg',
                 'title' => null
             ],
             [
                 'owner_id' => 6,
-                'filename' => 'kirimanjaro3.jpeg',
+                'filename' => 'kilimanjaro3.jpeg',
                 'title' => null
             ],
             [
