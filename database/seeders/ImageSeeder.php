@@ -32,7 +32,7 @@ class ImageSeeder extends Seeder
             ],
             [
                 'owner_id' => 2,
-                'filename' => 'emerald1.jpg',
+                'filename' => 'emerald1.jpeg',
                 'title' => null
             ],
             [
